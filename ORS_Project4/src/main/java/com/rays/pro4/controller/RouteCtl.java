@@ -5,28 +5,30 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.rays.pro4.Bean.BaseBean;
+import com.rays.pro4.Bean.RouteBean;
+import com.rays.pro4.Model.RouteModel;
 import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.DataValidator;
 import com.rays.pro4.Util.PropertyReader;
 import com.rays.pro4.Util.ServletUtility;
 
-@WebServlet()
+@WebServlet(name = "RouteCtl", urlPatterns = { "/ctl/RouteCtl" })
 public class RouteCtl extends BaseCtl {
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 		boolean pass = true;
-		if (DataValidator.isNull(request.getParameter("Dob"))) {
-			request.setAttribute("Dob", PropertyReader.getValue("error.require", "Date of birth"));
+		if (DataValidator.isNull(request.getParameter("purchasedate"))) {
+			request.setAttribute("purchasedate", PropertyReader.getValue("error.require", "purchasedate"));
 			pass = false;
-		} else if (!DataValidator.isDate(request.getParameter("Dob"))) {
-			request.setAttribute("Dob", PropertyReader.getValue("error.date", "Date Of Birth"));
+		} else if (!DataValidator.isDate(request.getParameter("purchasedate"))) {
+			request.setAttribute("purchasedate", PropertyReader.getValue("error.date", "purchasedate"));
 			pass = false;
 		}
-		if (DataValidator.isNull(request.getParameter("ContactName"))) {
-			request.setAttribute("ContactName", PropertyReader.getValue("error.require", "ContactName"));
+		if (DataValidator.isNull(request.getParameter("number"))) {
+			request.setAttribute("number", PropertyReader.getValue("error.require", "number"));
 			pass = false;
-		} else if (!DataValidator.isName(request.getParameter("ContactName"))) {
-			request.setAttribute("ContactName", "ContactName  must contains alphabet only");
+		} else if (!DataValidator.isName(request.getParameter("number"))) {
+			request.setAttribute("number", "number  must contains no only");
 			pass = false;
 		}
 		if (DataValidator.isNull(request.getParameter("Mobile"))) {
@@ -35,10 +37,13 @@ public class RouteCtl extends BaseCtl {
 		} else if (!DataValidator.isMobileNo(request.getParameter("Mobile"))) {
 			request.setAttribute("Mobile", "Mobile No. must be 10 Digit and No. Series start with 6-9");
 			pass = false;
+		}if (DataValidator.isNull(request.getParameter("insuranceAmount"))) {
+			request.setAttribute("insuranceAmount", PropertyReader.getValue("error.require", "insuranceAmount"));
+			pass = false;
 		}
 
-		if (DataValidator.isNull(request.getParameter("Status"))) {
-			request.setAttribute("Status", PropertyReader.getValue("error.require", "Status"));
+		if (DataValidator.isNull(request.getParameter("colour"))) {
+			request.setAttribute("colour", PropertyReader.getValue("error.require", "colour"));
 			pass = false;
 		}
 
@@ -47,14 +52,15 @@ public class RouteCtl extends BaseCtl {
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		LeadBean bean = new LeadBean();
+		RouteBean bean = new RouteBean();
 
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 
-		bean.setDob(DataUtility.getDate(request.getParameter("Dob")));
-		bean.setContactName(DataUtility.getString(request.getParameter("ContactName")));
+		bean.setPurchasedate(DataUtility.getDate(request.getParameter("purchasedate")));
 		bean.setMobile(DataUtility.getString(request.getParameter("Mobile")));
-		bean.setStatus(DataUtility.getString(request.getParameter("Status")));
+		bean.setInsuranceAmount(DataUtility.getInt(request.getParameter("insuranceAmount")));
+		bean.setNumber(DataUtility.getString(request.getParameter("number")));
+		bean.setColour(DataUtility.getString(request.getParameter("colour")));
 
 		return bean;
 	}
@@ -64,7 +70,7 @@ public class RouteCtl extends BaseCtl {
 			throws ServletException, IOException {
 		String op = DataUtility.getString(request.getParameter("operation"));
 
-		LeadModel model = new LeadModel();
+		RouteModel model = new RouteModel();
 
 		long id = DataUtility.getLong(request.getParameter("id"));
 
@@ -73,7 +79,7 @@ public class RouteCtl extends BaseCtl {
 		if (id != 0 && id > 0) {
 
 			System.out.println("in id > 0  condition " + id);
-			LeadBean bean;
+			RouteBean bean;
 
 			try {
 				bean = model.findByPK(id);
@@ -100,32 +106,32 @@ public class RouteCtl extends BaseCtl {
 
 		System.out.println(">>>><<<<>><<><<><<><>**********" + id + op);
 
-		LeadModel model = new LeadModel();
+		RouteModel model = new RouteModel();
 
 		if (OP_CANCEL.equalsIgnoreCase(op)) {
 
-			ServletUtility.redirect(ORSView.LEAD_LIST_CTL, request, response);
+			ServletUtility.redirect(ORSView.ROUTE_LIST_CTL, request, response);
 
 		}
 		if (OP_RESET.equalsIgnoreCase(op)) {
 
-			ServletUtility.redirect(ORSView.LEAD_CTL, request, response);
+			ServletUtility.redirect(ORSView.ROUTE_CTL, request, response);
 
 		}
 
 		if (OP_SAVE.equalsIgnoreCase(op) || OP_UPDATE.equalsIgnoreCase(op)) {
 
-			LeadBean bean = (LeadBean) populateBean(request);
+			RouteBean bean = (RouteBean) populateBean(request);
 
 			if (id > 0) {
 
 				try {
 					model.update(bean);
 					ServletUtility.setBean(bean, request);
-					ServletUtility.setSuccessMessage("Lead is successfully Updated", request);
+					ServletUtility.setSuccessMessage("Route is successfully Updated", request);
 					ServletUtility.forward(getView(), request, response);
 				} catch (Exception e) {
-					System.out.println("product not update");
+					System.out.println("Route not update");
 					e.printStackTrace();
 				}
 
@@ -133,12 +139,12 @@ public class RouteCtl extends BaseCtl {
 
 				try {
 					long pk = model.add(bean);
-					ServletUtility.setSuccessMessage("Lead is successfully Added", request);
+					ServletUtility.setSuccessMessage("Route is successfully Added", request);
 
 					bean.setId(pk);
 					ServletUtility.forward(getView(), request, response);
 				} catch (Exception e) {
-					System.out.println("product not added");
+					System.out.println("route not added");
 					e.printStackTrace();
 				}
 
@@ -151,7 +157,7 @@ public class RouteCtl extends BaseCtl {
 	@Override
 	protected String getView() {
 		// TODO Auto-generated method stub
-		return null;
+		return ORSView.ROUTE_VIEW;
 	}
 
 }

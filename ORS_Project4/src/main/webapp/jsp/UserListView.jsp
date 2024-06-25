@@ -62,16 +62,25 @@
 					<td align="center"><label>FirstName</font> :
 					</label> <input type="text" name="firstName" placeholder="Enter First Name"
 						value="<%=ServletUtility.getParameter("firstName", request)%>">
+						
+						<%-- <td align="center"><label>LastName</font> :
+					</label> <input type="text" name="lastName" placeholder="Enter last Name"
+						value="<%=ServletUtility.getParameter("lastName", request)%>"> --%>
+						
 
-						<label></font> </label> <%-- <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist) %> --%>
+						<label></font> </label> <%--  <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist) %>  --%>
 
 						<label>LoginId</font> :
 					</label> <input type="text" name="loginid" placeholder="Enter Login-Id"
 						value="<%=ServletUtility.getParameter("login", request)%>">
+						
 						&emsp; <label>Role</font> :
 					</label> <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist) %>
-						&nbsp; <%-- <%=HTMLUtility.getList("loginid", String.valueOf(bean.getRoleId()), ulist)%>
- --%> &nbsp; <input type="submit" name="operation"
+					<%-- 
+						&nbsp;<label>login</font><%=HTMLUtility.getList("login", String.valueOf(bean.getLogin()), ulist)%>
+  &nbsp; --%>
+  
+   <input type="submit" name="operation"
 						value="<%=UserListCtl.OP_SEARCH%>"> &nbsp; <input
 						type="submit" name="operation" value="<%=UserListCtl.OP_RESET%>">
 
@@ -147,8 +156,8 @@
 
 					<td><input type="submit" name="operation"
 						value="<%=UserListCtl.OP_DELETE%>"></td>
-					<td><input type="submit" name="operation"
-						value="<%=UserListCtl.OP_NEW%>"></td>
+					                           <td><input type="submit" name="operation"
+						                        value="<%=UserListCtl.OP_NEW%>"></td>
 
 					<%--  <%	UserModel model = new UserModel();
                      %>

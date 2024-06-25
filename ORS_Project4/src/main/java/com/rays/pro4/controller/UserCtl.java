@@ -222,6 +222,7 @@ public class UserCtl extends BaseCtl {
 			}
 		}
 		log.debug("UserCtl Method doGet Ended");
+		System.out.println("UserCtl do get");
 		ServletUtility.forward(getView(), request, response);
 	
 	}

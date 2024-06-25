@@ -143,8 +143,8 @@ public List search(RouteBean bean, int pageNo, int pageSize) throws Exception {
 			// System.out.println(">>>>>>>>>>1111"+bean.getProductAmmount());
 			sql.append(" AND Mobile like '" + bean.getMobile() + "%'");
 		}
-			if (bean.getInsuranceAmount() > 0) {
-				sql.append(" AND insurance_amount like '" + bean.getInsuranceAmount() + "%'");
+			if (bean.getInsuranceAmount()!= null && bean.getInsuranceAmount() > 0) {
+				sql.append(" AND insurance_amount  " + bean.getInsuranceAmount() );
 		}
 		if (bean.getColour() != null && bean.getColour().length() > 0) {
 			sql.append(" AND colour like '" + bean.getColour() + "%'");

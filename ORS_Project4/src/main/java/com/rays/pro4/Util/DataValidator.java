@@ -199,6 +199,17 @@ public class DataValidator {
 	    					return false;
 						}	
 	    		}
+	 public static boolean isDouble(String val) {
+		    if (val == null || val.isEmpty()) {
+		        return false;
+		    }
+		    try {
+		        Double.parseDouble(val);
+		        return true;
+		    } catch (NumberFormatException e) {
+		        return false;
+		    }
+		}
 	 
 	
 	public static void main(String[] args) {

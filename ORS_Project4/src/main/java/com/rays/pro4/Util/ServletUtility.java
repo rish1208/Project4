@@ -52,7 +52,7 @@ public class ServletUtility {
 			throws IOException, ServletException {
 
 		request.setAttribute("bodyPage", page);
-		RequestDispatcher rd = request.getRequestDispatcher(ORSView.LAYOUT_VIEW);
+		RequestDispatcher rd = request.getRequestDispatcher(ORSView.VECHILE_VIEW);
 		rd.forward(request, response);
 	}
 

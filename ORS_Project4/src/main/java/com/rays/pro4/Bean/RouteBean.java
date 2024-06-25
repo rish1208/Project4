@@ -6,7 +6,7 @@ public class RouteBean extends BaseBean {
 	private String number;
 	private Date purchasedate;
 	private String mobile;
-	private int insuranceAmount;
+	private Integer insuranceAmount;
 	private String colour;
 	
 
@@ -34,11 +34,11 @@ public class RouteBean extends BaseBean {
 		this.mobile = mobile;
 	}
 
-	public int getInsuranceAmount() {
+	public Integer getInsuranceAmount() {
 		return insuranceAmount;
 	}
 
-	public void setInsuranceAmount(int insuranceAmount) {
+	public void setInsuranceAmount(Integer insuranceAmount) {
 		this.insuranceAmount = insuranceAmount;
 	}
 

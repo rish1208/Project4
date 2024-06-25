@@ -131,7 +131,7 @@ public abstract class BaseCtl extends HttpServlet {
 
 		String op = DataUtility.getString(request.getParameter("operation")); 
 		System.out.println("Bctl servi op" + op);
-		// Check if operation is not DELETE, VIEW, CANCEL, and NULL then
+		// Check if operation is not DELETE, VIEW, CANCEL, RESET and NULL then
 		// perform input data validation
 
 		if (DataValidator.isNotNull(op) && !OP_CANCEL.equalsIgnoreCase(op) && !OP_VIEW.equalsIgnoreCase(op)

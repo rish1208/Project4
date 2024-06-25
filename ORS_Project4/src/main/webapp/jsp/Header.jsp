@@ -90,6 +90,26 @@
         <a href="<%=ORSView.FACULTY_LIST_CTL %>">Faculty List</b></a> |
         <a href="<%=ORSView.TIMETABLE_CTL %>" >Add TimeTable</b></a> |       
         <a href="<%=ORSView.TIMETABLE_LIST_CTL %>">TimeTable List</b></a> |
+        <a href="<%=ORSView.PRODUCT_CTL%>">Add Product</b></a> | 
+        <a href="<%=ORSView.PRODUCT_LIST_CTL%>">Product List</b></a>|
+        <a href="<%=ORSView.JOBREQUIREMENT_CTL%>">Add Job</b></a> | 
+        <a href="<%=ORSView.JOBREQUIREMENT_LIST_CTL%>">Job List</b></a>|
+        <a href="<%=ORSView.BANK_CTL%>">Add Bank</b></a> | 
+        <a href="<%=ORSView.BANK_LIST_CTL%>">Bank List</b></a>|
+        <a href="<%=ORSView.PATIENT_CTL%>">Add Patient</b></a> | 
+        <a href="<%=ORSView.PATIENT_LIST_CTL%>">Patient List</b></a>|
+        
+        <a href="<%=ORSView.DOCTOR_CTL%>">Add Doctor</b></a> | 
+        <a href="<%=ORSView.DOCTOR_LIST_CTL%>">Doctor List</b></a>|
+         <a href="<%=ORSView.LEAD_CTL%>">Add Lead</b></a> | 
+        <a href="<%=ORSView.LEAD_LIST_CTL%>">Lead List</b></a>|
+        
+        <a href="<%=ORSView.VEHICLE_CTL%>">Add Vehicle</b></a> | 
+        <a href="<%=ORSView.VEHICLE_LIST_CTL%>">VehicleList</b></a>|
+        <a href="<%=ORSView.ROUTE_CTL%>">Add Route</b></a> | 
+        <a href="<%=ORSView.ROUTE_LIST_CTL%>">Route List</b></a>|
+        
+        
         <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> |
        <%
      		}

@@ -1,3 +1,4 @@
+
 package com.rays.pro4.Util;
 
 import java.sql.Timestamp;
@@ -62,14 +63,14 @@ public class DataUtility {
 	 * @param val
 	 * @return
 	 */
-	public static int getInt(String val) {
+	public static Integer getInt(String val) {
 		if (DataValidator.isInteger(val)) {
 			return Integer.parseInt(val);
 		} else {
-			return 0;
+			return null;
 		}
 	}
-
+	
 	/**
 	 * Converts String into Long
 	 *
@@ -162,6 +163,17 @@ public class DataUtility {
 		return timeStamp;
 
 	}
+	public static Double getDouble(String val) {
+        if (DataValidator.isDouble(val)) {
+            return Double.parseDouble(val);
+        } else {
+            return null;
+        }
+    }
+
+    public static String getStringFromDouble(Double val) {
+        return val != null ? val.toString() : "";
+    }
 
 	public static long getTimestamp(Timestamp tm) {
 		try {
@@ -175,4 +187,7 @@ public class DataUtility {
 		System.out.println(getInt("124"));
 	}
 
+	
+
+	
 }

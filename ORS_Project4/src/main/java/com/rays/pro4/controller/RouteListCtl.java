@@ -1,20 +1,26 @@
 package com.rays.pro4.controller;
+
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.rays.pro4.Bean.BaseBean;
+import com.rays.pro4.Bean.RouteBean;
+import com.rays.pro4.Model.RouteModel;
 import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.PropertyReader;
 import com.rays.pro4.Util.ServletUtility;
 
-@WebServlet()
+@WebServlet(name = "RouteListCtl", urlPatterns = { "/ctl/RouteListCtl" })
 public class RouteListCtl extends BaseCtl {
+	
 	@Override
 	protected void preload(HttpServletRequest request) {
-		LeadModel model = new LeadModel();
+		RouteModel model = new RouteModel();
 		try {
 
 			List rlist = model.list();
@@ -28,13 +34,14 @@ public class RouteListCtl extends BaseCtl {
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		LeadBean bean = new LeadBean();
+		RouteBean bean = new RouteBean();
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 
-		bean.setDob(DataUtility.getDate(request.getParameter("Dob")));
-		bean.setContactName(DataUtility.getString(request.getParameter("ContactName")));
+		bean.setPurchasedate(DataUtility.getDate(request.getParameter("purchasedate")));
 		bean.setMobile(DataUtility.getString(request.getParameter("Mobile")));
-		bean.setStatus(DataUtility.getString(request.getParameter("Status")));
+		bean.setInsuranceAmount(DataUtility.getInt(request.getParameter("insuranceAmount")));
+		bean.setNumber(DataUtility.getString(request.getParameter("number")));
+		bean.setColour(DataUtility.getString(request.getParameter("colour")));
 		return bean;
 	}
 
@@ -47,9 +54,9 @@ public class RouteListCtl extends BaseCtl {
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
-		LeadBean bean = (LeadBean) populateBean(request);
+		RouteBean bean = (RouteBean) populateBean(request);
 
-		LeadModel model = new LeadModel();
+		RouteModel model = new RouteModel();
 
 		try {
 			list = model.search(bean, pageNo, pageSize);
@@ -86,11 +93,11 @@ public class RouteListCtl extends BaseCtl {
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		LeadBean bean = (LeadBean) populateBean(request);
+		RouteBean bean = (RouteBean) populateBean(request);
 
 		String[] ids = request.getParameterValues("ids");
 
-		LeadModel model = new LeadModel();
+		RouteModel model = new RouteModel();
 
 		if (OP_SEARCH.equalsIgnoreCase(op)) {
 			pageNo = 1;
@@ -107,7 +114,7 @@ public class RouteListCtl extends BaseCtl {
 		} else if (OP_DELETE.equalsIgnoreCase(op)) {
 			pageNo = 1;
 			if (ids != null && ids.length > 0) {
-				LeadBean deletebean = new LeadBean();
+				RouteBean deletebean = new RouteBean();
 				for (String id : ids) {
 					deletebean.setId(DataUtility.getInt(id));
 
@@ -147,10 +154,11 @@ public class RouteListCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 	}
 
+
 	@Override
 	protected String getView() {
 		// TODO Auto-generated method stub
-		return null;
+		return ORSView.ROUTE_LIST_VIEW;
 	}
 
 }

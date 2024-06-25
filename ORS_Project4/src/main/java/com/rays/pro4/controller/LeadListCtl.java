@@ -1,18 +1,13 @@
 
 package com.rays.pro4.controller;
-
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.rays.pro4.Bean.BaseBean;
-
 import com.rays.pro4.Bean.LeadBean;
-
 import com.rays.pro4.Model.LeadModel;
 import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.PropertyReader;
